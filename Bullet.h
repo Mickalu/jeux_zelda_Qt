@@ -2,12 +2,12 @@
 #define BULLET_H
 
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QObject>
 #include "Element.h"
 
-class Bullet: public QObject,public QGraphicsRectItem, public Element
+class Bullet: public QObject,public QGraphicsPixmapItem, public Element
 {
     Q_OBJECT
 public:

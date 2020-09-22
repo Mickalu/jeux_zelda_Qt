@@ -12,10 +12,10 @@ using namespace std;
 
 extern Game * game;
 
-Bullet::Bullet(QGraphicsItem *parent, std::string direction_struct): QObject(), QGraphicsRectItem(parent)
+Bullet::Bullet(QGraphicsItem *parent, std::string direction_struct): QObject(), QGraphicsPixmapItem(parent)
 {
     // drew the rect
-    setRect(0,0, 10,10);
+    setPixmap(QPixmap(":/images/images/fireball.jpg"));
     direction = direction_struct;
 
     // connect
@@ -79,14 +79,13 @@ void Bullet::move()
         }
     }
 
-
     if(direction == "forward")
     {
         // if there was no collision with an Enemy, move the bullet forward
         setPos(x(),y()-10);
 
         // if the bullet is off the screen, destroy it
-        if (pos().y() + rect().height() < 0)
+        if (pos().y() + this->boundingRect().height() < 0)
         {
             scene()->removeItem(this);
             delete this;
@@ -99,7 +98,7 @@ void Bullet::move()
         setPos(x()+10,y());
 
         // if the bullet is off the screen, destroy it
-        if (pos().y() + rect().width() < 0)
+        if (pos().y() + this->boundingRect().width() < 0)
         {
             scene()->removeItem(this);
             delete this;
@@ -112,7 +111,7 @@ void Bullet::move()
         setPos(x()-10,y());
 
         // if the bullet is off the screen, destroy it
-        if (pos().y() + rect().width() < 0)
+        if (pos().y() + this->boundingRect().width() < 0)
         {
             scene()->removeItem(this);
             delete this;
@@ -124,12 +123,10 @@ void Bullet::move()
         setPos(x(),y()+10);
 
         // if the bullet is off the screen, destroy it
-        if (pos().y() + rect().height() < 0)
+        if (pos().y() + this->boundingRect().height() < 0)
         {
             scene()->removeItem(this);
             delete this;
         }
     }
-
-
 }

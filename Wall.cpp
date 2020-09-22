@@ -15,7 +15,6 @@
 
 extern Game * game;
 
-Wall::Wall(QGraphicsItem *parent): QGraphicsRectItem(parent)
-{
+Wall::Wall(QGraphicsItem *parent): QGraphicsRectItem(parent){
 
 }

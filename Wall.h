@@ -6,9 +6,10 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
+#include <QGraphicsPixmapItem>
 #include "Element.h"
 
-class Wall:public QObject,  public QGraphicsRectItem, public Element
+class Wall:public QObject, public QGraphicsRectItem, public Element
 {
     Q_OBJECT
 public:

@@ -2,7 +2,7 @@
 #define HERO_H
 
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
@@ -10,7 +10,7 @@
 
 #include<string>
 
-class Hero:public QObject,  public QGraphicsRectItem, public Element
+class Hero:public QObject,  public QGraphicsPixmapItem, public Element
 {
     Q_OBJECT
 public:

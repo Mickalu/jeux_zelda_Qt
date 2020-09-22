@@ -8,21 +8,26 @@
 #include <QFont>
 #include <QLabel>
 
-
-
-
 Game:: Game(QWidget * parent)
 {
     // create a scene
     scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,800,600); // make the scene 800x600 instead of infinity by infinity (default)
+    scene->setSceneRect(0,0,1000,750); // make the scene 800x600 instead of infinity by infinity (default)
 
     // make the newly created scene the scene to visualize (since Game is a QGraphicsView Widget,
     // it can be used to visualize scenes)
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(800,600);
+    setFixedSize(1000,750);
+}
+
+void Game::playButtonClicked(){
+    scene->clearFocus();
+    playButton->hide();
+    quitButton->hide();
+    music->stop();
+    setBackgroundBrush(QBrush(QImage(":/images/images/herb.png")));
 
     //creation map element etc
     Wall * wall_up = new Wall();
@@ -45,7 +50,6 @@ Game:: Game(QWidget * parent)
 
     // create an itemm to add to the scene
     hero = new Hero(0, 12,"forward");
-    hero->setRect(0,0,100,100);
     hero->setPos(400,500); // TODO generalize to always be in the middle bottom of screen
 
 
@@ -86,7 +90,23 @@ Game:: Game(QWidget * parent)
     enemy2->setRect(0,0,50,10);
     enemy2->setPos(100,0);
     scene->addItem(enemy2);
+}
 
+void Game::displayMainMenu(){
+    setBackgroundBrush(QBrush(QImage(":/images/images/background_menu.jpg")));
 
-    show();
+    // play background music
+    music = new QMediaPlayer();
+    music->setMedia(QUrl("qrc:/sounds/sounds/zelda_main_theme_song.mp3"));
+    music->play();
+
+    playButton = new QPushButton("Play");
+    playButton->setGeometry(QRect(scene->width()/2 - 100,scene->height()/2 + 50,200,50));
+    connect(playButton, SIGNAL(clicked()), this, SLOT(playButtonClicked()));
+    scene->addWidget(playButton);
+
+    quitButton = new QPushButton("Quit");
+    quitButton->setGeometry(QRect(scene->width()/2 - 100,scene->height()/2 + 125,200,50));
+    connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
+    scene->addWidget(quitButton);
 }

@@ -12,13 +12,15 @@
 #include <QFont>
 #include <QTextEdit>
 #include <QGraphicsTextItem>
+#include <QGraphicsPixmapItem>
 #include <iostream>
 using namespace std;
 
-Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_struct): QGraphicsRectItem(parent)
+Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_struct)
 {
     health = health_constr;
     axe_bullet = axe_bulette_struct;
+    setPixmap(QPixmap(":/images/images/link_up.png"));
 
 
     QTimer * timer = new QTimer(this);
@@ -40,25 +42,35 @@ void Hero::keyPressEvent(QKeyEvent *event)
     {
         // on vérifie que la le cube ne sort pas du cadre
         axe_bullet = "left";
-        if (pos().x() > 0)
-        setPos(x()-10, y());
+        if (pos().x() > 0){
+            setPixmap(QPixmap(":/images/images/link_left.png"));
+            setPos(x()-10, y());
+        }
     }
     else if (event->key() == Qt::Key_Right)
     {
         // on vérifie que le cube ne sort pas par la droite
         axe_bullet = "right";
-        if(pos().x()+100 < 800)
-        setPos(x()+10, y());
+        if (pos().x()+40 < 1000){
+            setPixmap(QPixmap(":/images/images/link_right.png"));
+            setPos(x()+10, y());
+        }
     }
     else if (event->key() == Qt::Key_Up)
     {
         axe_bullet = "forward";
-        setPos(x(), y()-10);
+        if (pos().y() > 0){
+            setPixmap(QPixmap(":/images/images/link_up.png"));
+            setPos(x(), y()-10);
+        }
     }
     else if (event->key() == Qt::Key_Down)
     {
         axe_bullet = "down";
-        setPos(x(), y()+10);
+        if (pos().y()+50 < 750){
+            setPixmap(QPixmap(":/images/images/link_down.png"));
+            setPos(x(), y()+10);
+        }
     }
 
     else if (event->key() == Qt::Key_Space)
