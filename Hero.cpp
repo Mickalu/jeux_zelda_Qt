@@ -21,6 +21,7 @@ Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_str
     health = health_constr;
     axe_bullet = axe_bulette_struct;
     setPixmap(QPixmap(":/images/images/link_up.png"));
+    collision = false;
 
 
     QTimer * timer = new QTimer(this);
@@ -42,35 +43,72 @@ void Hero::keyPressEvent(QKeyEvent *event)
     {
         // on vérifie que la le cube ne sort pas du cadre
         axe_bullet = "left";
-        if (pos().x() > 0){
-            setPixmap(QPixmap(":/images/images/link_left.png"));
-            setPos(x()-10, y());
+        if(collision == true)
+        {
+
         }
+        else
+        {
+            if (pos().x() > 0){
+                setPixmap(QPixmap(":/images/images/link_left.png"));
+                setPos(x()-10, y());
+            }
+        }
+        collision = false;
+
     }
     else if (event->key() == Qt::Key_Right)
     {
         // on vérifie que le cube ne sort pas par la droite
         axe_bullet = "right";
-        if (pos().x()+40 < 1000){
-            setPixmap(QPixmap(":/images/images/link_right.png"));
-            setPos(x()+10, y());
+
+        if(collision == true)
+        {
+
         }
+        else
+        {
+            if (pos().x()+40 < 1000){
+                setPixmap(QPixmap(":/images/images/link_right.png"));
+                setPos(x()+10, y());
+            }
+        }
+        collision = false;
+
     }
     else if (event->key() == Qt::Key_Up)
     {
         axe_bullet = "forward";
-        if (pos().y() > 0){
-            setPixmap(QPixmap(":/images/images/link_up.png"));
-            setPos(x(), y()-10);
+
+        if(collision == true)
+        {
+
         }
+        else
+        {
+            if (pos().y() > 0){
+                setPixmap(QPixmap(":/images/images/link_up.png"));
+                setPos(x(), y()-10);
+            }
+        }
+        collision = false;
+
     }
     else if (event->key() == Qt::Key_Down)
     {
         axe_bullet = "down";
-        if (pos().y()+50 < 750){
-            setPixmap(QPixmap(":/images/images/link_down.png"));
-            setPos(x(), y()+10);
+        if(collision == true)
+        {
+
         }
+        else
+        {
+            if (pos().y()+50 < 750){
+                setPixmap(QPixmap(":/images/images/link_down.png"));
+                setPos(x(), y()+10);
+            }
+        }
+        collision = false;
     }
 
     else if (event->key() == Qt::Key_Space)
@@ -101,6 +139,7 @@ void Hero::collision_management()
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
+        collision = true;
         if (typeid(*(colliding_items[i])) == typeid(Enemy))
         {
             health_decrease();

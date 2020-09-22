@@ -28,6 +28,7 @@ public slots:
     void collision_management();
 
 private:
+    bool collision;
     int health;
     std::string axe_bullet;
 };
