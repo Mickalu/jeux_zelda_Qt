@@ -1,7 +1,7 @@
 #include "mainwindow.h"
-#include "Game.h"
 
 #include <QApplication>
+#include "Game.h"
 
 Game * game;
 

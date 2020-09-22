@@ -1,22 +1,49 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include "personnage.h"
-
+#include <QGraphicsRectItem>
 #include <QObject>
-#include <QGraphicsScene>
+#include <QGraphicsItem>
 #include <QList>
-#include <stdlib.h> // rand() -> really large int
+#include <QPointF>
+#include "Element.h"
 
 
-class Enemy : public Personnage
+// bullet hérite de QObject et de QGraphicsRectItem
+class Enemy: public QObject, public QGraphicsRectItem, public Element
 {
+    // QOBJECT macro
+    Q_OBJECT
+
 public:
-    Enemy();
+    /*
+    Enemy(QGraphicsItem * parent=0, QList<QPointF>points = QList<QPointF>()<< QPointF(0,0));
+    Enemy(QList<QPointF>points = QList<QPointF>()<< QPointF(0,0));*/
+    Enemy(QGraphicsItem * parent, QList<QPointF>points, int health_constr);
+
+    void rotateToPoint(QPointF point);
+    void health_decrease();
+    void health_increase();
+    int getHealth();
+    //bool collision_with_hero();
 
 public slots:
-    void spawn();
+    // fonction move de bullet
     void move();
-};
+    /*
+    void move_direction(QString direction);
+    void move_bottom();
+    void move_right();
+    void move_left();
+    void move_forward();*/
 
+
+
+
+private:
+    QList<QPointF> points_list;
+    QPointF dest;
+    int point_index;
+    int health;
+};
 #endif // ENEMY_H

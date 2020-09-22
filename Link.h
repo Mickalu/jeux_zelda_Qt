@@ -1,16 +1,19 @@
 #ifndef LINK_H
 #define LINK_H
 
-#include "personnage.h"
+#include <QGraphicsRectItem>
+#include <QObject>
+#include <QGraphicsItem>
 
-#include<QObject>
-#include<QKeyEvent>
-
-class Link : public Personnage
+class Link: public QObject,  public QGraphicsRectItem
 {
-public:
-    Link();
-    void keyPressEvent(QKeyEvent * event);
-};
+        Q_OBJECT
+    public:
+        Link(QGraphicsItem * parent=0);
+        void  keyPressEvent(QKeyEvent * event);
+
+    public slots:
+        void spawn();
+    };
 
 #endif // LINK_H
