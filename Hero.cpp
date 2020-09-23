@@ -43,12 +43,6 @@ Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_str
     game_over_song = new QMediaPlayer();
     game_over_song->setMedia(QUrl("qrc:/sounds/sounds/titanic-parody-mp3cut.mp3"));
 
-    /*
-    // draw the text
-    setPlainText(QString("Health: ") + QString::number(health)); // Health: 3
-    setDefaultTextColor(Qt::red);
-    setFont(QFont("times",16));
-    */
 }
 
 void Hero::keyPressEvent(QKeyEvent *event)
@@ -188,13 +182,11 @@ void Hero::collision_management()
 void Hero::health_decrease()
 {
     health--;
-    //setPlainText(QString("Health: ") + QString::number(health));
 }
 
 void Hero::health_increase()
 {
     health++;
-    //setPlainText(QString("Health: ") + QString::number(health));
 }
 
 int Hero::getHealth()
