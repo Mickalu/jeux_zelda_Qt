@@ -7,6 +7,7 @@
 #include <QDebug>
 #include "Hero.h"
 #include <iostream>
+#include "Wall.h"
 using namespace std;
 
 
@@ -47,28 +48,6 @@ void Bullet::move()
             // remove the bullet
             scene()->removeItem(this);
 
-
-            //decrease health of enemy
-            /*
-            foreach(QGraphicsItem * i , colliding_items)
-            {
-                Enemy * item= dynamic_cast<Enemy *>(i);
-                if (item)
-                {
-                    qInfo() << "Enemy life" + QString(item->getHealth());
-
-                    item->health_decrease();
-                    if(item->getHealth() == 0)
-                    {
-                        //delete colliding_items[i];
-                        scene()->removeItem(item);
-                        //for bullet
-                        delete this;
-                    }
-                }
-            }*/
-            //if (health == 0){ delete this}
-
             // delete them from the heap to save memory
             delete colliding_items[i];
             //for bullet
@@ -77,6 +56,14 @@ void Bullet::move()
             // return (all code below refers to a non existint bullet)*/
             return;
         }
+
+        if (typeid(*(colliding_items[i])) == typeid(Wall))
+        {
+            scene()->removeItem(this);
+            delete this;
+            return;
+        }
+
     }
 
     if(direction == "forward")
