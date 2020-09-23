@@ -23,6 +23,7 @@ Enemy::Enemy(QGraphicsItem *parent, QList<QPointF>points, int health_constr = 12
     dest = points_list[0];
     rotateToPoint(dest);
     health = health_constr;
+    setPixmap(QPixmap(":/images/images/toad.png"));
 
     //connect timer to move function
     QTimer * timer = new QTimer(this);

@@ -89,7 +89,6 @@ void Game::playButtonClicked(){
     points_list << QPointF(100,100) << QPointF(100, 200) << QPointF(200,200) << QPointF(100,0);
     Enemy * enemy1 = new Enemy(0, points_list, 12);
 
-    enemy1->setRect(0,0,10,10);
     enemy1->setPos(100,0);
     scene->addItem(enemy1);
 
@@ -98,7 +97,6 @@ void Game::playButtonClicked(){
     points_list_enemy2 << QPointF(100,100) << QPointF(200, 100) << QPointF(0,100) <<QPointF(0,0) << QPointF(100,0);
     Enemy * enemy2 = new Enemy(0, points_list_enemy2, 12);
 
-    enemy2->setRect(0,0,50,10);
     enemy2->setPos(100,0);
     scene->addItem(enemy2);
 }

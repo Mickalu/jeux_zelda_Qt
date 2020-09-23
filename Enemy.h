@@ -1,7 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
 #include <QObject>
 #include <QGraphicsItem>
 #include <QList>
@@ -10,7 +10,7 @@
 
 
 // bullet hérite de QObject et de QGraphicsRectItem
-class Enemy: public QObject, public QGraphicsRectItem, public Element
+class Enemy: public QObject, public QGraphicsPixmapItem, public Element
 {
     // QOBJECT macro
     Q_OBJECT
