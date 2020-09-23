@@ -16,5 +16,5 @@ extern Game * game;
 
 Potion::Potion()
 {
-     setPixmap(QPixmap(":/images/images/potion.png"));
+     setRect(0,0, 10,50);
 }

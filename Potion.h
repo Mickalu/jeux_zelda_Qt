@@ -2,13 +2,13 @@
 #define POTION_H
 
 
-#include <QGraphicsPixmapItem>
+#include <QGraphicsRectItem>
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
 #include "Element.h"
 
-class Potion:public QObject,  public QGraphicsPixmapItem, public Element
+class Potion:public QObject,  public QGraphicsRectItem, public Element
 {
 public:
     Potion();

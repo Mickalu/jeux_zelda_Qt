@@ -42,6 +42,7 @@ void Game::playButtonClicked(){
 
     Potion * potion = new Potion();
 
+    potion->setRect(0,0,10,10);
     potion->setPos(100,300);
     scene->addItem(potion);
 
