@@ -8,6 +8,7 @@
         <file>images/herb.png</file>
         <file>images/wall.png</file>
         <file>images/fireball.jpg</file>
+        <file>images/potion.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/zelda_main_theme_song.mp3</file>
