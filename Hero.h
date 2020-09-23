@@ -10,6 +10,8 @@
 
 #include<string>
 
+#include "Potion.h"
+
 class Hero:public QObject,  public QGraphicsPixmapItem, public Element
 {
     Q_OBJECT
@@ -21,8 +23,6 @@ public:
     int getHealth();
     std::string get_axe_bullet();
     void gestion_impact_hero_movement();
-
-
 
 public slots:
     void collision_management();

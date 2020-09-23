@@ -30,15 +30,20 @@ void Game::playButtonClicked(){
     setBackgroundBrush(QBrush(QImage(":/images/images/herb.png")));
 
     //creation map element etc
-    Wall * wall_up = new Wall();
-    wall_up->setRect(0,0,50,1000);
-    wall_up->setPos(0,0);
-    scene->addItem(wall_up);
+    Wall * wall_left = new Wall();
+    wall_left->setRect(0,0,50,1000);
+    wall_left->setPos(0,0);
+    scene->addItem(wall_left);
 
     Wall * wall_right = new Wall();
-    wall_right->setRect(0,0,100,30);
-    wall_right->setPos(400,400);
+    wall_right->setRect(0,0,50,1000);
+    wall_right->setPos(950,0);
     scene->addItem(wall_right);
+
+    Wall * wall_up = new Wall();
+    wall_up->setRect(0,0,1000,50);
+    wall_up->setPos(0,0);
+    scene->addItem(wall_up);
 
     Potion * potion = new Potion();
 
