@@ -58,7 +58,6 @@ void Game::playButtonClicked(){
     scene->addItem(potion);
 
 
-
     // create an itemm to add to the scene
     hero = new Hero(0, 12,"forward");
     hero->setPos(400,500); // TODO generalize to always be in the middle bottom of screen
