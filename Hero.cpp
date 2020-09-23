@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Potion.h"
 #include "Wall.h"
+#include "Repeller.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -139,9 +140,10 @@ void Hero::collision_management()
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
-        collision = true;
+
         if (typeid(*(colliding_items[i])) == typeid(Enemy))
         {
+            collision = true;
             health_decrease();
 
             if(health == 0)
@@ -160,6 +162,11 @@ void Hero::collision_management()
         }
 
         else if (typeid(*(colliding_items[i])) == typeid(Wall))
+        {
+            collision = true;
+            gestion_impact_hero_movement();
+        }
+        else if (typeid(*(colliding_items[i])) == typeid(Repeller))
         {
             gestion_impact_hero_movement();
         }
