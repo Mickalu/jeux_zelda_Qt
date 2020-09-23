@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include "Wall.h"
 #include "Potion.h"
+#include "Repeller.h"
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include <QFont>
@@ -40,10 +41,18 @@ void Game::playButtonClicked(){
     wall_right->setPos(950,0);
     scene->addItem(wall_right);
 
+
     Wall * wall_up = new Wall();
     wall_up->setRect(0,0,1000,50);
     wall_up->setPos(0,0);
     scene->addItem(wall_up);
+
+    Repeller * repeller_center = new Repeller();
+    repeller_center->setRect(0,0,550, 50);
+    repeller_center->setPos(800,400);
+    scene->addItem(repeller_center);
+
+
 
     Potion * potion = new Potion();
 

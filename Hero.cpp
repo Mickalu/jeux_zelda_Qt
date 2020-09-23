@@ -3,6 +3,7 @@
 #include "Bullet.h"
 #include "Potion.h"
 #include "Wall.h"
+#include "Repeller.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -14,6 +15,8 @@
 #include <QGraphicsTextItem>
 #include <QGraphicsPixmapItem>
 #include <iostream>
+#include <QMediaPlayer>
+
 using namespace std;
 
 Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_struct)
@@ -27,6 +30,18 @@ Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_str
     QTimer * timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(collision_management()));
     timer->start(50);
+
+    bulletsound = new QMediaPlayer();
+    bulletsound->setMedia(QUrl("qrc:/sounds/sounds/pistol_fire3.mp3"));
+
+    degat_sound = new QMediaPlayer();
+    degat_sound->setMedia(QUrl("qrc:/sounds/sounds/classic_hurt.mp3"));
+
+    heal_sound = new QMediaPlayer();
+    heal_sound->setMedia(QUrl("qrc:/sounds/sounds/healing-pokemon-sound.mp3"));
+
+    game_over_song = new QMediaPlayer();
+    game_over_song->setMedia(QUrl("qrc:/sounds/sounds/titanic-parody-mp3cut.mp3"));
 
     /*
     // draw the text
@@ -120,17 +135,10 @@ void Hero::keyPressEvent(QKeyEvent *event)
         bullet->setPos(x(), y());
         scene()->addItem(bullet);
 
-        /*
+
         //play bulletsound
         //stop the song if it already work
-        if (bulletsound->state() == QMediaPlayer::PlayingState)
-        {
-            bulletsound->setPosition(0);
-        }
-        else if (bulletsound->state() == QMediaPlayer::StoppedState)
-        {
-            bulletsound->play();
-        }*/
+        start_song(bulletsound);
     }
 }
 
@@ -139,13 +147,16 @@ void Hero::collision_management()
     QList<QGraphicsItem*> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
-        collision = true;
+
         if (typeid(*(colliding_items[i])) == typeid(Enemy))
         {
+            collision = true;
+            start_song(degat_sound);
             health_decrease();
 
             if(health == 0)
             {
+                start_song(game_over_song);
                 scene()->removeItem(this);
                 delete this;
             }
@@ -155,11 +166,18 @@ void Hero::collision_management()
         else if (typeid(*(colliding_items[i])) == typeid(Potion))
         {
             health_increase();
+            start_song(heal_sound);
             scene()->removeItem(colliding_items[i]);
+            delete colliding_items[i];
             qInfo() << health;
         }
 
         else if (typeid(*(colliding_items[i])) == typeid(Wall))
+        {
+            collision = true;
+            gestion_impact_hero_movement();
+        }
+        else if (typeid(*(colliding_items[i])) == typeid(Repeller))
         {
             gestion_impact_hero_movement();
         }
@@ -206,5 +224,17 @@ void Hero::gestion_impact_hero_movement()
     else if(axe_bullet == "forward")
     {
         setPos(x(), y()+10);
+    }
+}
+
+void Hero::start_song(QMediaPlayer *song)
+{
+    if (song->state() == QMediaPlayer::PlayingState)
+    {
+        song->setPosition(0);
+    }
+    else if (song->state() == QMediaPlayer::StoppedState)
+    {
+        song->play();
     }
 }

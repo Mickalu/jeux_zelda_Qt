@@ -23,6 +23,8 @@ SOURCES += \
     Game.cpp \
     Hero.cpp \
     Potion.cpp \
+    Repeller.cpp \
+    Sand.cpp \
     Score.cpp \
     Wall.cpp \
     main.cpp \
@@ -35,6 +37,8 @@ HEADERS += \
     Game.h \
     Hero.h \
     Potion.h \
+    Repeller.h \
+    Sand.h \
     Score.h \
     Wall.h \
     mainwindow.h
@@ -49,3 +53,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+DISTFILES += \
+    sounds/classic_hurt.mp3 \
+    sounds/healing-pokemon-sound.mp3 \
+    sounds/pistol_fire3.mp3 \
+    sounds/titanic-parody-mp3cut.mp3
