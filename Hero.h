@@ -36,6 +36,7 @@ private:
     QMediaPlayer *bulletsound;
     QMediaPlayer *degat_sound;
     QMediaPlayer *heal_sound;
+    QMediaPlayer *game_over_song;
 };
 
 #endif // HERO_H

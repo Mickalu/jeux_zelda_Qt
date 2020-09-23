@@ -40,6 +40,9 @@ Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_str
     heal_sound = new QMediaPlayer();
     heal_sound->setMedia(QUrl("qrc:/sounds/sounds/healing-pokemon-sound.mp3"));
 
+    game_over_song = new QMediaPlayer();
+    game_over_song->setMedia(QUrl("qrc:/sounds/sounds/titanic-parody-mp3cut.mp3"));
+
     /*
     // draw the text
     setPlainText(QString("Health: ") + QString::number(health)); // Health: 3
@@ -153,6 +156,7 @@ void Hero::collision_management()
 
             if(health == 0)
             {
+                start_song(game_over_song);
                 scene()->removeItem(this);
                 delete this;
             }
