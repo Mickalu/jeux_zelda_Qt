@@ -52,8 +52,6 @@ void Game::playButtonClicked(){
     repeller_center->setPos(800,400);
     scene->addItem(repeller_center);
 
-
-
     Potion * potion = new Potion();
 
     potion->setPos(100,300);
