@@ -53,3 +53,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res.qrc
+
+DISTFILES += \
+    sounds/classic_hurt.mp3 \
+    sounds/healing-pokemon-sound.mp3 \
+    sounds/pistol_fire3.mp3 \
+    sounds/titanic-parody-mp3cut.mp3

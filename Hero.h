@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QGraphicsItem>
 #include <QGraphicsTextItem>
+#include <QMediaPlayer>
 #include "Element.h"
 
 #include<string>
@@ -21,6 +22,7 @@ public:
     int getHealth();
     std::string get_axe_bullet();
     void gestion_impact_hero_movement();
+    void start_song(QMediaPlayer *song);
 
 
 
@@ -31,6 +33,9 @@ private:
     bool collision;
     int health;
     std::string axe_bullet;
+    QMediaPlayer *bulletsound;
+    QMediaPlayer *degat_sound;
+    QMediaPlayer *heal_sound;
 };
 
 #endif // HERO_H
