@@ -3,7 +3,10 @@
 #include "Bullet.h"
 #include "Potion.h"
 #include "Wall.h"
+#include "Door.h"
 #include "Repeller.h"
+#include "Health.h"
+#include "Game.h"
 
 #include <QKeyEvent>
 #include <QGraphicsScene>
@@ -19,9 +22,10 @@
 
 using namespace std;
 
-Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_struct)
+extern Game * game;
+
+Hero::Hero(QGraphicsItem *parent, std::string axe_bulette_struct)
 {
-    health = health_constr;
     axe_bullet = axe_bulette_struct;
     setPixmap(QPixmap(":/images/images/link_up.png"));
     collision = false;
@@ -42,13 +46,6 @@ Hero::Hero(QGraphicsItem *parent, int health_constr, std::string axe_bulette_str
 
     game_over_song = new QMediaPlayer();
     game_over_song->setMedia(QUrl("qrc:/sounds/sounds/titanic-parody-mp3cut.mp3"));
-
-    /*
-    // draw the text
-    setPlainText(QString("Health: ") + QString::number(health)); // Health: 3
-    setDefaultTextColor(Qt::red);
-    setFont(QFont("times",16));
-    */
 }
 
 void Hero::keyPressEvent(QKeyEvent *event)
@@ -152,24 +149,26 @@ void Hero::collision_management()
         {
             collision = true;
             start_song(degat_sound);
-            health_decrease();
+            game->health->decreaseHealth();
 
-            if(health == 0)
+            if(game->health->getHealth() == 0)
             {
-                start_song(game_over_song);
-                scene()->removeItem(this);
-                delete this;
+                emit heroDied();
+                scene()->clear();
+                if(scene()){
+                    qDebug()<<"scene exists";
+                }
             }
 
             gestion_impact_hero_movement();
         }
         else if (typeid(*(colliding_items[i])) == typeid(Potion))
         {
-            health_increase();
+            game->health->increaseHealth();
             start_song(heal_sound);
             scene()->removeItem(colliding_items[i]);
             delete colliding_items[i];
-            qInfo() << health;
+            qInfo() << game->health;
         }
 
         else if (typeid(*(colliding_items[i])) == typeid(Wall))
@@ -181,25 +180,12 @@ void Hero::collision_management()
         {
             gestion_impact_hero_movement();
         }
+        else if (typeid(*(colliding_items[i])) == typeid(Door))
+        {
+            qDebug()<<"1";
+        }
         return;
     }
-}
-
-void Hero::health_decrease()
-{
-    health--;
-    //setPlainText(QString("Health: ") + QString::number(health));
-}
-
-void Hero::health_increase()
-{
-    health++;
-    //setPlainText(QString("Health: ") + QString::number(health));
-}
-
-int Hero::getHealth()
-{
-    return health;
 }
 
 std::string Hero::get_axe_bullet()

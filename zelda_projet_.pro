@@ -18,9 +18,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     Bullet.cpp \
+    Door.cpp \
     Element.cpp \
     Enemy.cpp \
     Game.cpp \
+    Health.cpp \
     Hero.cpp \
     Potion.cpp \
     Repeller.cpp \
@@ -32,9 +34,11 @@ SOURCES += \
 
 HEADERS += \
     Bullet.h \
+    Door.h \
     Element.h \
     Enemy.h \
     Game.h \
+    Health.h \
     Hero.h \
     Potion.h \
     Repeller.h \

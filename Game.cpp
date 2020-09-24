@@ -2,6 +2,7 @@
 #include "Hero.h"
 #include "Enemy.h"
 #include "Wall.h"
+#include "Door.h"
 #include "Potion.h"
 #include "Repeller.h"
 #include <QTimer>
@@ -32,12 +33,12 @@ void Game::playButtonClicked(){
 
     //creation map element etc
     Wall * wall_left = new Wall();
-    wall_left->setRect(0,0,50,1000);
+    wall_left->setRect(0,0,50,750);
     wall_left->setPos(0,0);
     scene->addItem(wall_left);
 
     Wall * wall_right = new Wall();
-    wall_right->setRect(0,0,50,1000);
+    wall_right->setRect(0,0,50,750);
     wall_right->setPos(950,0);
     scene->addItem(wall_right);
 
@@ -46,6 +47,15 @@ void Game::playButtonClicked(){
     wall_up->setRect(0,0,1000,50);
     wall_up->setPos(0,0);
     scene->addItem(wall_up);
+
+    Wall * wall_down = new Wall();
+    wall_down->setRect(0,0,900,50);
+    wall_down->setPos(0,700);
+    scene->addItem(wall_down);
+
+    Door * door = new Door();
+    door->setPos(900,700);
+    scene->addItem(door);
 
     Repeller * repeller_center = new Repeller();
     repeller_center->setRect(0,0,550, 50);
@@ -59,19 +69,24 @@ void Game::playButtonClicked(){
 
 
     // create an itemm to add to the scene
-    hero = new Hero(0, 12,"forward");
+    hero = new Hero(0,"forward");
     hero->setPos(400,500); // TODO generalize to always be in the middle bottom of screen
 
 
     // make rect focusable il reçois tous les keyboard event
     hero->setFlag(QGraphicsItem::ItemIsFocusable);
     hero->setFocus();
+    connect(hero,SIGNAL(heroDied()),this,SLOT(displayGameOver()));
 
     scene->addItem(hero);
 
     // create the score
     score = new Score();
     scene->addItem(score);
+
+    health = new Health();
+    health->setPos(0,40);
+    scene->addItem(health);
 
 
     // a enlever pour mettre des enemies placés
@@ -117,4 +132,16 @@ void Game::displayMainMenu(){
     quitButton->setGeometry(QRect(scene->width()/2 - 100,scene->height()/2 + 125,200,50));
     connect(quitButton, SIGNAL(clicked()), this, SLOT(close()));
     scene->addWidget(quitButton);
+}
+
+void Game::displayGameOver(){
+    scene->clearFocus();    
+
+    setBackgroundBrush(QBrush(QImage(":/images/images/background_gameover.jpg")));
+    music->setMedia(QUrl("qrc:/sounds/sounds/titanic-parody-mp3cut.mp3"));
+    music->play();
+
+    playButton->setText("Try Again");
+    playButton->show();
+    quitButton->show();
 }

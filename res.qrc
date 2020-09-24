@@ -10,6 +10,8 @@
         <file>images/fireball.jpg</file>
         <file>images/potion.png</file>
         <file>images/toad.png</file>
+        <file>images/background_gameover.jpg</file>
+        <file>images/door.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/zelda_main_theme_song.mp3</file>

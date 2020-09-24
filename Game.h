@@ -6,9 +6,11 @@
 #include <QGraphicsScene>
 #include <QPushButton>
 #include <QMediaPlayer>
+#include <QGraphicsTextItem>
 #include "Hero.h"
 #include "Score.h"
 #include "Wall.h"
+#include "Health.h"
 
 
 
@@ -21,7 +23,7 @@ public:
     QGraphicsScene * scene;
     Hero * hero;
     Score * score;
-
+    Health * health;
     QPushButton* playButton;
     QPushButton* quitButton;
     QMediaPlayer* music;
@@ -29,6 +31,8 @@ public:
 
 public slots:
     void playButtonClicked();
+    void displayGameOver();
+
 };
 
 #endif // GAME_H
