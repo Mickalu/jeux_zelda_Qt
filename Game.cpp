@@ -75,12 +75,9 @@ void Game::playButtonClicked(){
     points_list << QPointF(100,100) << QPointF(100, 200) << QPointF(200,200) << QPointF(100,500);
     Enemy * enemy1 = new Enemy(0, points_list, 12);
 
-<<<<<<< Updated upstream
-    enemy1->setPos(100,0);
-=======
-    enemy1->setRect(0,0,10,10);
+
     enemy1->setPos(100, 50);
->>>>>>> Stashed changes
+
     scene->addItem(enemy1);
 
 
