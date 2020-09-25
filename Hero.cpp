@@ -188,6 +188,7 @@ void Hero::collision_management()
     }
 }
 
+
 std::string Hero::get_axe_bullet()
 {
     return axe_bullet;

@@ -14,10 +14,8 @@ Game:: Game(QWidget * parent)
 {
     // create a scene
     scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,1000,750); // make the scene 800x600 instead of infinity by infinity (default)
+    scene->setSceneRect(0,0,1000,750);
 
-    // make the newly created scene the scene to visualize (since Game is a QGraphicsView Widget,
-    // it can be used to visualize scenes)
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -97,18 +95,18 @@ void Game::playButtonClicked(){
     QObject::connect(timer,SIGNAL(timeout()),hero,SLOT(spawn()));
     timer->start(2000);*/
 
-
-
     QList<QPointF>points_list;
-    points_list << QPointF(100,100) << QPointF(100, 200) << QPointF(200,200) << QPointF(100,0);
+    points_list << QPointF(100,100) << QPointF(100, 200) << QPointF(200,200) << QPointF(100,500);
     Enemy * enemy1 = new Enemy(0, points_list, 12);
 
-    enemy1->setPos(100,0);
+
+    enemy1->setPos(100, 50);
+
     scene->addItem(enemy1);
 
 
     QList<QPointF>points_list_enemy2;
-    points_list_enemy2 << QPointF(100,100) << QPointF(200, 100) << QPointF(0,100) <<QPointF(0,0) << QPointF(100,0);
+    points_list_enemy2 << QPointF(500,100) << QPointF(200, 100) << QPointF(400,100) <<QPointF(600,300) << QPointF(100,550);
     Enemy * enemy2 = new Enemy(0, points_list_enemy2, 12);
 
     enemy2->setPos(100,0);
