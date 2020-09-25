@@ -26,7 +26,6 @@ SOURCES += \
     Hero.cpp \
     Potion.cpp \
     Repeller.cpp \
-    Sand.cpp \
     Score.cpp \
     Wall.cpp \
     main.cpp \
@@ -42,7 +41,6 @@ HEADERS += \
     Hero.h \
     Potion.h \
     Repeller.h \
-    Sand.h \
     Score.h \
     Wall.h \
     mainwindow.h

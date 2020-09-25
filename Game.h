@@ -32,7 +32,7 @@ public:
 public slots:
     void playButtonClicked();
     void displayGameOver();
-
+    void displayWin();
 };
 
 #endif // GAME_H

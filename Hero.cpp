@@ -11,7 +11,6 @@
 #include <QKeyEvent>
 #include <QGraphicsScene>
 
-#include <QDebug>
 #include <QTimer>
 #include <QFont>
 #include <QTextEdit>
@@ -155,9 +154,6 @@ void Hero::collision_management()
             {
                 emit heroDied();
                 scene()->clear();
-                if(scene()){
-                    qDebug()<<"scene exists";
-                }
             }
 
             gestion_impact_hero_movement();
@@ -168,7 +164,6 @@ void Hero::collision_management()
             start_song(heal_sound);
             scene()->removeItem(colliding_items[i]);
             delete colliding_items[i];
-            qInfo() << game->health;
         }
 
         else if (typeid(*(colliding_items[i])) == typeid(Wall))
@@ -182,7 +177,13 @@ void Hero::collision_management()
         }
         else if (typeid(*(colliding_items[i])) == typeid(Door))
         {
-            qDebug()<<"1";
+            emit doorTouched();
+            game->scene->clear();
+            QGraphicsTextItem * win = new QGraphicsTextItem("Pay the extension to have access to the entire game !");
+            win->setDefaultTextColor((Qt::black));
+            win->setFont(QFont("times", 18));
+            win->setPos(game->scene->width()/2 - win->boundingRect().width()/2,50);
+            game->scene->addItem(win);
         }
         return;
     }

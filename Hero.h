@@ -29,6 +29,7 @@ public slots:
 
 signals:
     void heroDied();
+    void doorTouched();
 
 private:
     bool collision;

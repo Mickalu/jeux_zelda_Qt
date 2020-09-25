@@ -12,6 +12,8 @@
         <file>images/toad.png</file>
         <file>images/background_gameover.jpg</file>
         <file>images/door.png</file>
+        <file>images/desert.png</file>
+        <file>images/win_menu.jpg</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>sounds/zelda_main_theme_song.mp3</file>
@@ -19,5 +21,6 @@
         <file>sounds/healing-pokemon-sound.mp3</file>
         <file>sounds/pistol_fire3.mp3</file>
         <file>sounds/titanic-parody-mp3cut.mp3</file>
+        <file>sounds/money_2.mp3</file>
     </qresource>
 </RCC>

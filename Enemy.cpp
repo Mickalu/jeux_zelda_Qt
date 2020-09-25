@@ -14,13 +14,12 @@
 
 extern Game * game;
 
-Enemy::Enemy(QGraphicsItem *parent, QList<QPointF>points, int health_constr = 12)
+Enemy::Enemy(QGraphicsItem *parent, QList<QPointF>points)
 {
     points_list = points;
     point_index = 0;
     dest = points_list[0];
     rotateToPoint(dest);
-    health = health_constr;
     setPixmap(QPixmap(":/images/images/toad.png"));
 
     //connect timer to move function
@@ -68,21 +67,3 @@ void Enemy::rotateToPoint(QPointF p)
     QLineF ln(pos(), p);
     setRotation(-1 * ln.angle());
 }
-
-void Enemy::health_decrease()
-{
-    health--;
-}
-
-void Enemy::health_increase()
-{
-    health++;
-}
-
-int Enemy::getHealth()
-{
-    return health;
-}
-
-
-

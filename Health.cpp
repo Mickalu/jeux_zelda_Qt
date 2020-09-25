@@ -2,7 +2,7 @@
 #include <QFont>
 
 Health::Health(QGraphicsItem * parent): QGraphicsTextItem(parent){
-    health = 3;
+    health = 5;
 
     setPlainText(QString("Health: " + QString::number(health))); // Score: 0
     setDefaultTextColor((Qt::red)); // change the color
@@ -11,10 +11,6 @@ Health::Health(QGraphicsItem * parent): QGraphicsTextItem(parent){
 
 int Health::getHealth(){
     return health;
-}
-
-void Health::setHealth(int life){
-    health = life;
 }
 
 void Health::increaseHealth(){

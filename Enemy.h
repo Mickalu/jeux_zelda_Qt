@@ -16,13 +16,9 @@ class Enemy: public QObject, public QGraphicsPixmapItem, public Element
     Q_OBJECT
 
 public:
-    Enemy(QGraphicsItem * parent, QList<QPointF>points, int health_constr);
+    Enemy(QGraphicsItem * parent, QList<QPointF>points);
 
     void rotateToPoint(QPointF point);
-    void health_decrease();
-    void health_increase();
-    int getHealth();
-
 
 public slots:
     // fonction move de bullet
@@ -32,6 +28,5 @@ private:
     QList<QPointF> points_list;
     QPointF dest;
     int point_index;
-    int health;
 };
 #endif // ENEMY_H

@@ -52,7 +52,6 @@ void Bullet::move()
             delete colliding_items[i];
             //for bullet
             delete this;
-            qInfo() << colliding_items;
             // return (all code below refers to a non existint bullet)*/
             return;
         }
