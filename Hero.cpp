@@ -144,7 +144,7 @@ void Hero::collision_management()
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
 
-        if (typeid(*(colliding_items[i])) == typeid(Enemy))
+        if (typeid((colliding_items[i])) == typeid(Enemy*))
         {
             collision = true;
             start_song(degat_sound);
@@ -158,7 +158,7 @@ void Hero::collision_management()
 
             gestion_impact_hero_movement();
         }
-        else if (typeid(*(colliding_items[i])) == typeid(Potion))
+        else if (typeid((colliding_items[i])) == typeid(Potion*))
         {
             game->health->increaseHealth();
             start_song(heal_sound);
@@ -166,16 +166,16 @@ void Hero::collision_management()
             delete colliding_items[i];
         }
 
-        else if (typeid(*(colliding_items[i])) == typeid(Wall))
+        else if (typeid((colliding_items[i])) == typeid(Wall*))
         {
             collision = true;
             gestion_impact_hero_movement();
         }
-        else if (typeid(*(colliding_items[i])) == typeid(Repeller))
+        else if (typeid((colliding_items[i])) == typeid(Repeller*))
         {
             gestion_impact_hero_movement();
         }
-        else if (typeid(*(colliding_items[i])) == typeid(Door))
+        else if (typeid((colliding_items[i])) == typeid(Door*))
         {
             emit doorTouched();
             game->scene->clear();
